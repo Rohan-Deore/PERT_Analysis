@@ -4,12 +4,12 @@ using System.Collections.Generic;
 class Task
 {
     public string Name { get; }
-    public int Duration { get; }
+    public double Duration { get; }
     public List<Task> PreviousTasks { get; }
-    public int EarliestStart { get; private set; }
-    public int EarliestFinish { get; private set; }
+    public double EarliestStart { get; private set; }
+    public double EarliestFinish { get; private set; }
 
-    public Task(string name, int duration)
+    public Task(string name, double duration)
     {
         Name = name;
         Duration = duration;
@@ -50,8 +50,9 @@ class Program
             if (name.ToLower() == "done")
                 break;
 
-            Console.Write($"Enter duration for task {name}: ");
-            int duration = int.Parse(Console.ReadLine());
+            Console.Write($"Enter duration for task {name} (e.g., '5 days' or '8 hrs'): ");
+            var durationInput = Console.ReadLine();
+            double duration = ParseDuration(durationInput);
             var task = new Task(name, duration);
 
             Console.Write($"Enter names of previous tasks for {name} (comma-separated, or 'none'): ");
@@ -78,9 +79,27 @@ class Program
         foreach (var task in tasks.Values)
         {
             task.CalculateEarliestTimes();
-            Console.WriteLine($"Task {task.Name}: Earliest Start = {task.EarliestStart}, Earliest Finish = {task.EarliestFinish}");
+            Console.WriteLine($"Task {task.Name}: Earliest Start = {task.EarliestStart}, Earliest Finish = {task.EarliestFinish} hrs");
         }
+    }
 
-        Console.ReadKey();
+    static double ParseDuration(string input)
+    {
+        var parts = input.Split(' ');
+        double value = double.Parse(parts[0]);
+        string unit = parts[1].ToLower();
+
+        if (unit == "days" || unit == "day")
+        {
+            return value * 24; // Convert days to hours
+        }
+        else if (unit == "hrs" || unit == "hr" || unit == "hours" || unit == "hour")
+        {
+            return value;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid duration format");
+        }
     }
 }
