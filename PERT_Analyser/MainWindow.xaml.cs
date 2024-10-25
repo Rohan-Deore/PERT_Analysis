@@ -83,6 +83,22 @@ namespace PERT_Analyser
                 throw new ArgumentException("Invalid duration format");
             }
         }
+
+        private void Data_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TaskName.Clear();
+            TaskDuration.Clear();
+            PreviousTasks.Clear();
+        }
+
+        private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var data = ((sender as ListBox).SelectedValue as string);
+            var splitData = data.Split(' ');
+            TaskName.Text = splitData[0];
+            TaskDuration.Text = splitData[1];
+            PreviousTasks.Text = splitData[2].Trim('[', ']');
+        }
     }
 
     public class Task
