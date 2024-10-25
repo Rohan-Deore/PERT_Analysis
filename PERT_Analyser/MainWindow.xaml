@@ -7,26 +7,26 @@
         mc:Ignorable="d"
         Title="PERT Analysis" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>"Task Name"</Label>
-                <TextBox Name="TaskName" Width="200" Margin="10" />
-                <!--PlaceholderText="Task Name"-->
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>"Duration (e.g., '5 days' or '8 hrs')"</Label>
-                <TextBox Name="TaskDuration" Width="200" Margin="10" />
-                <!--PlaceholderText="Duration (e.g., '5 days' or '8 hrs')"-->
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label>"Previous Tasks (comma-separated)"</Label>
-                <TextBox Name="PreviousTasks" Width="200" Margin="10" />
-                <!--PlaceholderText="Previous Tasks (comma-separated)"-->
-            </StackPanel>
-            <Button Content="Add Task" Width="100" Margin="10" Click="AddTask_Click"/>
-            <Button Content="Calculate PERT" Width="150" Margin="10" Click="CalculatePERT_Click"/>
-            <ListBox Name="Results" Width="400" Height="200" Margin="10"/>
-
-        </StackPanel>
-    </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">Task Name</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="TaskName" Width="200" Margin="10" HorizontalAlignment="Left"/>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">Duration (e.g., '5 days' or '8 hrs')</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="TaskDuration" Width="200" Margin="10" HorizontalAlignment="Left"/>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">Previous Tasks (comma-separated)</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="PreviousTasks" Width="200" Margin="10" HorizontalAlignment="Left"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Add Task" Width="100" Margin="10" Click="AddTask_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Calculate PERT" Width="150" Margin="10" Click="CalculatePERT_Click"/>
+        <ListBox Grid.Row="4" Grid.Column="0" Name="Data" MinWidth="200" MinHeight="200" Margin="10"/>
+        <ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10"/>
+        </Grid>
 </Window>

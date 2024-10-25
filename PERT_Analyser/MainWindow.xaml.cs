@@ -30,7 +30,7 @@ namespace PERT_Analyser
             Task task = new Task(name, duration);
 
             string previousTasksInput = PreviousTasks.Text;
-            if (previousTasksInput.ToLower() != "none")
+            if (previousTasksInput.ToLower() != "none" || !string.IsNullOrEmpty(previousTasksInput))
             {
                 foreach (string previousTaskName in previousTasksInput.Split(','))
                 {
@@ -47,6 +47,7 @@ namespace PERT_Analyser
             }
 
             tasks[name] = task;
+            Data.Items.Add(task.ToString());
             TaskName.Clear();
             TaskDuration.Clear();
             PreviousTasks.Clear();
@@ -99,6 +100,20 @@ namespace PERT_Analyser
             PreviousTasks = new List<Task>();
             EarliestStart = 0;
             EarliestFinish = 0;
+        }
+
+        public override string ToString()
+        {
+            string prevTasks = "[";
+            foreach (Task task in PreviousTasks) 
+            {
+                prevTasks += task.Name;
+                prevTasks += ", ";
+            }
+            
+            prevTasks += "]";
+
+            return $"{Name} {Duration} {prevTasks}";
         }
 
         public void AddPreviousTask(Task task)
