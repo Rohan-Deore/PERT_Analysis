@@ -35,6 +35,11 @@ namespace PERT_Analyser
                 foreach (string previousTaskName in previousTasksInput.Split(','))
                 {
                     string trimmedName = previousTaskName.Trim();
+                    if (string.IsNullOrEmpty(trimmedName))
+                    {
+                        continue;
+                    }
+
                     if (tasks.ContainsKey(trimmedName))
                     {
                         task.AddPreviousTask(tasks[trimmedName]);
@@ -67,7 +72,14 @@ namespace PERT_Analyser
         private double ParseDuration(string input)
         {
             string[] parts = input.Split(' ');
-            double value = double.Parse(parts[0]);
+            double value = 0;
+
+            if (!double.TryParse(parts[0], out value))
+            {
+                Console.WriteLine("Invalid duration");
+                return 0;
+            }
+
             string unit = parts[1].ToLower();
 
             if (unit == "days" || unit == "day")
@@ -98,6 +110,21 @@ namespace PERT_Analyser
             TaskName.Text = splitData[0];
             TaskDuration.Text = splitData[1];
             PreviousTasks.Text = splitData[2].Trim('[', ']');
+        }
+
+        private void TaskDuration_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string[] parts = TaskDuration.Text.Split(' ');
+            double value = 0;
+
+            if (double.TryParse(parts[0], out value))
+            {
+                TaskDuration.BorderBrush = new SolidColorBrush(Colors.Black);
+            }
+            else
+            { 
+                TaskDuration.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
         }
     }
 

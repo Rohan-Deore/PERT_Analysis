@@ -86,7 +86,13 @@ class Program
     static double ParseDuration(string input)
     {
         var parts = input.Split(' ');
-        double value = double.Parse(parts[0]);
+        double value = 0;
+        if (!double.TryParse(parts[0], out value))
+        {
+            Console.WriteLine("parsing failed!!");
+            return 0;
+        }
+
         string unit = parts[1].ToLower();
 
         if (unit == "days" || unit == "day")
