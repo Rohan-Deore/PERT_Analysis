@@ -1,13 +1,7 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PERT_Analyser
 {
@@ -125,56 +119,6 @@ namespace PERT_Analyser
             { 
                 TaskDuration.BorderBrush = new SolidColorBrush(Colors.Red);
             }
-        }
-    }
-
-    public class Task
-    {
-        public string Name { get; }
-        public double Duration { get; }
-        public List<Task> PreviousTasks { get; }
-        public double EarliestStart { get; private set; }
-        public double EarliestFinish { get; private set; }
-
-        public Task(string name, double duration)
-        {
-            Name = name;
-            Duration = duration;
-            PreviousTasks = new List<Task>();
-            EarliestStart = 0;
-            EarliestFinish = 0;
-        }
-
-        public override string ToString()
-        {
-            string prevTasks = "[";
-            foreach (Task task in PreviousTasks) 
-            {
-                prevTasks += task.Name;
-                prevTasks += ", ";
-            }
-            
-            prevTasks += "]";
-
-            return $"{Name} {Duration} {prevTasks}";
-        }
-
-        public void AddPreviousTask(Task task)
-        {
-            PreviousTasks.Add(task);
-        }
-
-        public void CalculateEarliestTimes()
-        {
-            if (PreviousTasks.Count == 0)
-            {
-                EarliestStart = 0;
-            }
-            else
-            {
-                EarliestStart = Math.Max(EarliestStart, PreviousTasks.Max(task => task.EarliestFinish));
-            }
-            EarliestFinish = EarliestStart + Duration;
         }
     }
 }
