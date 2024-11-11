@@ -10,7 +10,7 @@ namespace PERT_Analyser
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Dictionary<string, Task> tasks = new Dictionary<string, Task>();
+        private Dictionary<int, Task> tasks = new Dictionary<int, Task>();
 
         public MainWindow()
         {
@@ -26,26 +26,29 @@ namespace PERT_Analyser
             string previousTasksInput = PreviousTasks.Text;
             if (previousTasksInput.ToLower() != "none" || !string.IsNullOrEmpty(previousTasksInput))
             {
-                foreach (string previousTaskName in previousTasksInput.Split(','))
+                foreach (string previousTaskId in previousTasksInput.Split(','))
                 {
-                    string trimmedName = previousTaskName.Trim();
-                    if (string.IsNullOrEmpty(trimmedName))
+                    string taskIdStr = previousTaskId.Trim();
+                    
+                    if (string.IsNullOrEmpty(taskIdStr))
                     {
                         continue;
                     }
 
-                    if (tasks.ContainsKey(trimmedName))
+                    int taskId = int.Parse(taskIdStr);
+
+                    if (tasks.ContainsKey(taskId))
                     {
-                        task.AddPreviousTask(tasks[trimmedName]);
+                        task.AddPreviousTask(tasks[taskId]);
                     }
                     else
                     {
-                        MessageBox.Show($"Task {trimmedName} does not exist.");
+                        MessageBox.Show($"Task {taskId} does not exist.");
                     }
                 }
             }
 
-            tasks[name] = task;
+            tasks[task.Id] = task;
             Data.Items.Add(task.ToString());
             TaskName.Clear();
             TaskDuration.Clear();
@@ -119,6 +122,11 @@ namespace PERT_Analyser
             { 
                 TaskDuration.BorderBrush = new SolidColorBrush(Colors.Red);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Data.Items.Add("Id\tName\tDuration\tPrevious task Ids");
         }
     }
 }

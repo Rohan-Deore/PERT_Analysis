@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PERT_Analyser"
         mc:Ignorable="d"
-        Title="PERT Analysis" Height="450" Width="800">
+        Title="PERT Analysis" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,13 +18,13 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">Task Name</Label>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">Task name</Label>
         <TextBox Grid.Row="0" Grid.Column="1" Name="TaskName" Width="200" Margin="10" HorizontalAlignment="Left"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">Duration (e.g., '5 days' or '8 hrs')</Label>
         <TextBox Grid.Row="1" Grid.Column="1" Name="TaskDuration" Width="200" Margin="10" HorizontalAlignment="Left" LostFocus="TaskDuration_LostFocus"/>
-        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">Previous Tasks (comma-separated)</Label>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">Previous task Ids(comma-separated)</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Name="PreviousTasks" Width="200" Margin="10" HorizontalAlignment="Left"/>
-        <Button Grid.Row="3" Grid.Column="0" Content="Add Task" Width="100" Margin="10" Click="AddTask_Click"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Add task" Width="100" Margin="10" Click="AddTask_Click"/>
         <Button Grid.Row="3" Grid.Column="1" Content="Calculate PERT" Width="150" Margin="10" Click="CalculatePERT_Click"/>
         <ListBox Grid.Row="4" Grid.Column="0" Name="Data" MinWidth="200" MinHeight="200" Margin="10" SelectionChanged="Data_SelectionChanged" MouseDoubleClick="Data_MouseDoubleClick"/>
         <ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10"/>

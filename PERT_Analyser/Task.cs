@@ -8,6 +8,8 @@ namespace PERT_Analyser
 {
     public class Task
     {
+        private static int taskCounter = 1;
+        public int Id { get; }
         public string Name { get; }
         public double Duration { get; }
         public List<Task> PreviousTasks { get; }
@@ -16,6 +18,7 @@ namespace PERT_Analyser
 
         public Task(string name, double duration)
         {
+            Id = taskCounter++;
             Name = name;
             Duration = duration;
             PreviousTasks = new List<Task>();
@@ -34,7 +37,7 @@ namespace PERT_Analyser
 
             prevTasks += "]";
 
-            return $"{Name} {Duration} {prevTasks}";
+            return $"{Id}\t{Name}\t{Duration}\t{prevTasks}";
         }
 
         public void AddPreviousTask(Task task)
