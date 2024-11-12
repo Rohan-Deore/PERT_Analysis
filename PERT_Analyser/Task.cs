@@ -31,7 +31,7 @@ namespace PERT_Analyser
             string prevTasks = "[";
             foreach (Task task in PreviousTasks)
             {
-                prevTasks += task.Name;
+                prevTasks += task.Id;
                 prevTasks += ", ";
             }
 
