@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using NLog;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,6 +11,8 @@ namespace PERT_Analyser
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private Dictionary<int, Task> tasks = new Dictionary<int, Task>();
 
         public MainWindow()
@@ -32,10 +35,16 @@ namespace PERT_Analyser
                     
                     if (string.IsNullOrEmpty(taskIdStr))
                     {
+                        logger.Warn("Task ID list is empty.");
                         continue;
                     }
 
-                    int taskId = int.Parse(taskIdStr);
+                    int taskId = 0;
+                    if (!int.TryParse(taskIdStr, out taskId))
+                    {
+                        logger.Warn("Task ID is invalid.");
+                        continue;
+                    }
 
                     if (tasks.ContainsKey(taskId))
                     {

@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.3.4" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y &quot;$(SolutionDir)\NLog.config&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
+
 </Project>
