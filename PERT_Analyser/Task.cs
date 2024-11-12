@@ -55,6 +55,7 @@ namespace PERT_Analyser
             {
                 EarliestStart = Math.Max(EarliestStart, PreviousTasks.Max(task => task.EarliestFinish));
             }
+
             EarliestFinish = EarliestStart + Duration;
         }
     }

@@ -23,7 +23,13 @@ namespace PERT_Analyser
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             string name = TaskName.Text;
-            double duration = ParseDuration(TaskDuration.Text);
+            double duration = 0;
+            if (!ParseDuration(TaskDuration.Text, out duration))
+            {
+                MessageBox.Show("Duration is not valid.");
+                return;
+            }
+
             Task task = new Task(name, duration);
 
             string previousTasksInput = PreviousTasks.Text;
@@ -52,7 +58,9 @@ namespace PERT_Analyser
                     }
                     else
                     {
-                        MessageBox.Show($"Task {taskId} does not exist.");
+                        var message = $"Task {taskId} does not exist.";
+                        logger.Error(message);
+                        MessageBox.Show(message);
                     }
                 }
             }
@@ -75,31 +83,38 @@ namespace PERT_Analyser
             }
         }
 
-        private double ParseDuration(string input)
+        private bool ParseDuration(string input, out double duration)
         {
-            string[] parts = input.Split(' ');
-            double value = 0;
+            bool status = false;
 
-            if (!double.TryParse(parts[0], out value))
+            string[] parts = input.Split(' ');
+
+            if (!double.TryParse(parts[0], out duration))
             {
-                Console.WriteLine("Invalid duration");
-                return 0;
+                logger.Warn("Invalid duration");
+                return status;
             }
 
             string unit = parts[1].ToLower();
 
             if (unit == "days" || unit == "day")
             {
-                return value * 24; // Convert days to hours
+                duration = duration * 24;
+                status = true;
+                return status; // Convert days to hours
             }
             else if (unit == "hrs" || unit == "hr" || unit == "hours" || unit == "hour")
             {
-                return value;
+                status = true;
+                return status;
             }
             else
             {
+                logger.Error("Invalid duration format");
                 throw new ArgumentException("Invalid duration format");
             }
+
+            return status;
         }
 
         private void Data_SelectionChanged(object sender, SelectionChangedEventArgs e)
