@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>PERT analysis software logo 256.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="PERT analysis software logo 256.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.3.4" />
