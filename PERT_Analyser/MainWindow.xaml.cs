@@ -49,7 +49,7 @@ namespace PERT_Analyser
                     if (!int.TryParse(taskIdStr, out taskId))
                     {
                         logger.Warn("Task ID is invalid.");
-                        continue;
+                        return;
                     }
 
                     if (tasks.ContainsKey(taskId))
@@ -61,12 +61,13 @@ namespace PERT_Analyser
                         var message = $"Task {taskId} does not exist.";
                         logger.Error(message);
                         MessageBox.Show(message);
+                        return;
                     }
                 }
             }
 
             tasks[task.Id] = task;
-            Data.Items.Add(task.ToString());
+            Data.Items.Add(task);
             TaskName.Clear();
             TaskDuration.Clear();
             PreviousTasks.Clear();
@@ -78,7 +79,13 @@ namespace PERT_Analyser
 
             foreach (Task task in tasks.Values)
             {
-                task.CalculateEarliestTimes();
+                List<Task> prevTaskList = new List<Task>();
+                foreach (int taskID in task.PreviousTasks)
+                {
+                    prevTaskList.Add(tasks[taskID]);
+                }
+
+                task.CalculateEarliestTimes(prevTaskList);
                 Results.Items.Add($"Task {task.Name}: Earliest Start = {task.EarliestStart}, Earliest Finish = {task.EarliestFinish} hrs");
             }
         }
@@ -111,7 +118,7 @@ namespace PERT_Analyser
             else
             {
                 logger.Error("Invalid duration format");
-                throw new ArgumentException("Invalid duration format");
+                return status;
             }
 
             return status;
@@ -127,7 +134,13 @@ namespace PERT_Analyser
         private void Data_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var data = ((sender as ListBox).SelectedValue as string);
-            var splitData = data.Split(' ');
+            var splitData = data.Split([' ', '\t']);
+            if (splitData.Count() < 4)
+            {
+                logger.Error("Task data parsing failed.");
+                return;
+            }
+
             TaskName.Text = splitData[0];
             TaskDuration.Text = splitData[1];
             PreviousTasks.Text = splitData[2].Trim('[', ']');
@@ -150,7 +163,7 @@ namespace PERT_Analyser
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Data.Items.Add("Id\tName\tDuration\tPrevious task Ids");
+            //Data.Items.Add("Id\tName\tDuration\tPrevious task Ids");
         }
     }
 }

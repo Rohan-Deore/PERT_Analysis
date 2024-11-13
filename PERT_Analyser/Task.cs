@@ -12,7 +12,7 @@ namespace PERT_Analyser
         public int Id { get; }
         public string Name { get; }
         public double Duration { get; }
-        public List<Task> PreviousTasks { get; }
+        public List<int> PreviousTasks { get; }
         public double EarliestStart { get; private set; }
         public double EarliestFinish { get; private set; }
 
@@ -21,7 +21,7 @@ namespace PERT_Analyser
             Id = taskCounter++;
             Name = name;
             Duration = duration;
-            PreviousTasks = new List<Task>();
+            PreviousTasks = new List<int>();
             EarliestStart = 0;
             EarliestFinish = 0;
         }
@@ -29,9 +29,9 @@ namespace PERT_Analyser
         public override string ToString()
         {
             string prevTasks = "[";
-            foreach (Task task in PreviousTasks)
+            foreach (int taskID in PreviousTasks)
             {
-                prevTasks += task.Id;
+                prevTasks += taskID;
                 prevTasks += ", ";
             }
 
@@ -42,10 +42,10 @@ namespace PERT_Analyser
 
         public void AddPreviousTask(Task task)
         {
-            PreviousTasks.Add(task);
+            PreviousTasks.Add(task.Id);
         }
 
-        public void CalculateEarliestTimes()
+        public void CalculateEarliestTimes(List<Task> prevTasks)
         {
             if (PreviousTasks.Count == 0)
             {
@@ -53,7 +53,7 @@ namespace PERT_Analyser
             }
             else
             {
-                EarliestStart = Math.Max(EarliestStart, PreviousTasks.Max(task => task.EarliestFinish));
+                EarliestStart = Math.Max(EarliestStart, prevTasks.Max(task => task.EarliestFinish));
             }
 
             EarliestFinish = EarliestStart + Duration;
