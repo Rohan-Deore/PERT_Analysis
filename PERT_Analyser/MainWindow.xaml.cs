@@ -67,7 +67,7 @@ namespace PERT_Analyser
             }
 
             tasks[task.Id] = task;
-            Data.Items.Add(task);
+            Results.Items.Add(task);
             TaskName.Clear();
             TaskDuration.Clear();
             PreviousTasks.Clear();
