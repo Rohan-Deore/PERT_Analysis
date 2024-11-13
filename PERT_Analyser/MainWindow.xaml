@@ -41,12 +41,32 @@
                         <TextBlock Grid.Column="1" Text="{Binding Name}"/>
                         <TextBlock Grid.Column="2" Text="{Binding Duration}"/>
                         <Separator Grid.Column="3"/>
-                        <ListBox Grid.Column="4" ItemsSource="{Binding PreviousTasks}"/>
-                        
+                        <ListBox Grid.Column="4" ItemsSource="{Binding PreviousTasks}" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Margin="5"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10"/>
+        <ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="{Binding Name}" MinWidth="40" />
+                        <TextBlock Text="{Binding EarliestStart}" MinWidth="40" Margin="10,0,0,0"/>
+                        <TextBlock Text="{Binding EarliestFinish}" MinWidth="40" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         </Grid>
 </Window>

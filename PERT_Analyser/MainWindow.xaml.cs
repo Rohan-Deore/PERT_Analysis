@@ -86,7 +86,7 @@ namespace PERT_Analyser
                 }
 
                 task.CalculateEarliestTimes(prevTaskList);
-                Results.Items.Add($"Task {task.Name}: Earliest Start = {task.EarliestStart}, Earliest Finish = {task.EarliestFinish} hrs");
+                Results.Items.Add(task);
             }
         }
 
