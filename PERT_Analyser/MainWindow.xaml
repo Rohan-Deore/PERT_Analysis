@@ -26,48 +26,6 @@
         <TextBox Grid.Row="2" Grid.Column="1" Name="PreviousTasks" Width="200" Margin="10" HorizontalAlignment="Left"/>
         <Button Grid.Row="3" Grid.Column="0" Content="Add task" Width="100" Margin="10" Click="AddTask_Click"/>
         <Button Grid.Row="3" Grid.Column="1" Content="Calculate PERT" Width="150" Margin="10" Click="CalculatePERT_Click"/>
-        <!--<ListBox Grid.Row="4" Grid.Column="0" Name="Data" MinWidth="200" MinHeight="200" Margin="10" SelectionChanged="Data_SelectionChanged" MouseDoubleClick="Data_MouseDoubleClick">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition MinWidth="12"/>
-                            <ColumnDefinition MinWidth="80"/>
-                            <ColumnDefinition MinWidth="20"/>
-                            <ColumnDefinition MinWidth="20"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Id}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Name}"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Duration}"/>
-                        <Separator Grid.Column="3"/>
-                        <ListBox Grid.Column="4" ItemsSource="{Binding PreviousTasks}" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}" Margin="5"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
-        <!--<ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <TextBlock Text="{Binding Name}" MinWidth="40" />
-                        <TextBlock Text="{Binding EarliestStart}" MinWidth="40" Margin="10,0,0,0"/>
-                        <TextBlock Text="{Binding EarliestFinish}" MinWidth="40" Margin="10,0,0,0"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -90,7 +48,20 @@
                             <TextBlock Text="{Binding Id}" Width="40"/>
                             <TextBlock Text="{Binding Name}" Width="100"/>
                             <TextBlock Text="{Binding Duration}" Width="100"/>
-                            <TextBlock Text="{Binding PreviousTasks}" Width="100"/>
+                            <ItemsControl ItemsSource="{Binding PreviousTasks}" ScrollViewer.HorizontalScrollBarVisibility="Auto" Width="100">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding}" Width="15"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                             <TextBlock Text="{Binding EarliestStart}" Width="150" Margin="10,0,0,0"/>
                             <TextBlock Text="{Binding EarliestFinish}" Width="150" Margin="10,0,0,0"/>
                         </StackPanel>
