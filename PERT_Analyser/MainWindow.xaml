@@ -57,7 +57,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10">
+        <!--<ListBox Grid.Row="4" Grid.Column="1" Name="Results" MinWidth="200" MinHeight="200" Margin="10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
@@ -67,6 +67,30 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Header Row -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+                <TextBlock Text="Task Name" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Earliest Start" Width="150" FontWeight="Bold" Margin="10,0,0,0"/>
+                <TextBlock Text="Finish Time" Width="150" FontWeight="Bold" Margin="10,0,0,0"/>
+            </StackPanel>
+            <!-- ListBox Row -->
+            <ListBox Name="Results" Grid.Row="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="{Binding Name}" Width="100"/>
+                            <TextBlock Text="{Binding EarliestStart}" Width="150" Margin="10,0,0,0"/>
+                            <TextBlock Text="{Binding EarliestFinish}" Width="150" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
+    </Grid>
 </Window>
