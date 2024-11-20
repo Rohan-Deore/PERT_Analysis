@@ -16,6 +16,7 @@
   Unicode True
   BrandingText "Rohan Deore"
   !define MUI_ICON "PERT analysis software logo 256.ico"
+  !define App_Name "PERT Analyser" 
 
   ; !define MUI_HEADERIMAGE
   ; !define MUI_HEADERIMAGE_BITMAP "PERT Analyser banner image.bmp"
@@ -74,6 +75,15 @@ Section "Main Application" SecDummy
 
 SectionEnd
 
+; Optional section (can be disabled by the user)
+Section "Start Menu Shortcuts"
+
+  CreateDirectory "$SMPROGRAMS\${App_Name}"
+  CreateShortcut "$SMPROGRAMS\${App_Name}\Uninstall.lnk" "$INSTDIR\uninstall.exe"
+  CreateShortcut "$SMPROGRAMS\${App_Name}\${App_Name}.lnk" "$INSTDIR\PERT_Analyser.exe"
+
+SectionEnd
+
 ;--------------------------------
 ;Descriptions
 
@@ -91,15 +101,14 @@ SectionEnd
 Section "Uninstall"
 
   ;ADD YOUR OWN FILES HERE...
-  ; File "Release/net8.0-windows/NLog.config"
-  ; File "Release/net8.0-windows/NLog.dll"
-  ; File "Release/net8.0-windows/PERT_Analyser.dll"
-  ; File "Release/net8.0-windows/PERT_Analyser.exe"
-
+  Delete "$INSTDIR\*.*"
   Delete "$INSTDIR\Uninstall.exe"
-
-  RMDir "$INSTDIR"
-
+  SetOutPath "$LOCALAPPDATA"
+  RMDir /r /REBOOTOK "$INSTDIR"
+  Delete "$SMPROGRAMS\${App_Name}\${App_Name}.lnk"
+  Delete "$SMPROGRAMS\${App_Name}\Uninstall.lnk"
+  RMDir "$SMPROGRAMS\${App_Name}"
+  
   DeleteRegKey /ifempty HKCU "Software\PERT_Analyser"
 
 SectionEnd
