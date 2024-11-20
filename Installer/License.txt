@@ -1,0 +1,42 @@
+Priority Software License Agreement
+
+This License Agreement (the "Agreement") is made and entered into by and between [Your Name/Your Company] ("Licensor") and the user ("Licensee").
+
+1. **Grant of License**
+   The Licensor grants the Licensee a non-exclusive, non-transferable, revocable license to use the software ("Priority Software") in accordance with the terms of this Agreement.
+
+2. **Use of Software**
+   The Licensee agrees to use the Priority Software solely for its intended purpose. Any use of the Priority Software not authorized by this Agreement is strictly prohibited.
+
+3. **Restrictions**
+   The Licensee shall not:
+   - Modify, adapt, or create derivative works of the Priority Software.
+   - Reverse engineer, decompile, disassemble, or attempt to discover the source code of the Priority Software.
+   - Distribute, sublicense, or otherwise transfer the Priority Software to any third party.
+
+4. **Intellectual Property**
+   The Priority Software is the exclusive property of the Licensor. All rights not expressly granted in this Agreement are reserved by the Licensor.
+
+5. **Disclaimer of Warranties**
+   The Priority Software is provided "as-is" and "as available" without warranties of any kind, either express or implied, including but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+6. **Limitation of Liability**
+   In no event shall the Licensor be liable for any direct, indirect, incidental, special, or consequential damages, or any damages whatsoever, including but not limited to, damages for loss of use, data, or profits, arising out of or in any way connected with the use or performance of the Priority Software, whether in an action of contract, negligence, or other tortious action, even if the Licensor has been advised of the possibility of such damages.
+
+7. **Indemnification**
+   The Licensee agrees to indemnify and hold the Licensor harmless from any claims, losses, liabilities, damages, expenses, and costs, including reasonable attorney's fees, arising out of or related to the Licensee's use of the Priority Software.
+
+8. **Termination**
+   This Agreement is effective until terminated. The Licensor may terminate this Agreement at any time without notice if the Licensee fails to comply with any term or condition of this Agreement. Upon termination, the Licensee shall immediately cease all use of the Priority Software and destroy all copies, full or partial, of the Priority Software.
+
+9. **Governing Law**
+   This Agreement shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law principles.
+
+10. **Entire Agreement**
+    This Agreement constitutes the entire agreement between the Licensor and the Licensee with respect to the Priority Software and supersedes all prior or contemporaneous understandings or agreements, written or oral, regarding such subject matter.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+Rohan Deore
+Nashik
+deorerohan.2612@gmail.com

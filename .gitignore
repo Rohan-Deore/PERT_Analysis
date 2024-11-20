@@ -8,3 +8,5 @@
 
 /PERT_Analyser/bin
 /PERT_Analyser/obj
+Installer/Release/
+Installer/PERT_Analyser_Installer.exe
